@@ -4,7 +4,8 @@ ENV HOME=/usr/app
 RUN mkdir -p $HOME
 WORKDIR $HOME
 ADD . $HOME
-RUN --mount=type=cache,target=/root/.m2 ./mvnw -f $HOME/pom.xml clean package
+RUN chmod +x mvnw
+RUN ./mvnw -f $HOME/pom.xml clean package
 
 # 打包阶段
 FROM openjdk:17-slim
